@@ -41,6 +41,16 @@ double trapezy(double (*f)(double)) {
 }
 
 double mc(double(*f)(double)) {
-    return 1;
+    const int N = 10000;
+    double s = 0;
+    double dx = c_do - c_od;
+
+    for (int i = 1; i <= N; i++) {
+        s += (*f)(c_od + ((double)rand()/(double)(RAND_MAX + 1)*dx));
+    }
+
+    s = dx * s / N;
+
+    return s;
 }
 
