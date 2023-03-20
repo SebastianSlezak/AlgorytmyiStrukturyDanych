@@ -7,11 +7,11 @@
 double c_od, c_do;
 
 double f3(double x) {
-    return exp(-x * x);
+    return pow((x-2),3);
 }
 
 double f4(double x) {
-    return sin(x) / x;
+    return pow((x-M_PI),3);
 }
 
 
@@ -44,7 +44,7 @@ double trapezy(double (*f)(double)) {
 }
 
 double mc(double(*f)(double)) {
-    const int N = 10000;
+    const int N = 1000;
     double s = 0;
     double dx = c_do - c_od;
 
