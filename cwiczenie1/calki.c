@@ -16,7 +16,6 @@ double f4(double x) {
 
 
 double prostokaty(double( *f)(double)) {
-//    const int N = 1000;
     double s = 0;
     double dx = (c_do - c_od) / lp;
 
@@ -30,7 +29,6 @@ double prostokaty(double( *f)(double)) {
 }
 
 double trapezy(double (*f)(double)) {
-//    const int N = 1000;
     double s = 0;
     double dx = (c_do - c_od) / lp;
 
@@ -44,7 +42,6 @@ double trapezy(double (*f)(double)) {
 }
 
 double mc(double(*f)(double)) {
-//    const int N = 1000;
     double s = 0;
     double dx = c_do - c_od;
 
