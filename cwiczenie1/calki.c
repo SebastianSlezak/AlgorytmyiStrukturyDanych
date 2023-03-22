@@ -16,11 +16,11 @@ double f4(double x) {
 
 
 double prostokaty(double( *f)(double)) {
-    const int N = 1000;
+//    const int N = 1000;
     double s = 0;
-    double dx = (c_do - c_od) / N;
+    double dx = (c_do - c_od) / lp;
 
-    for (int i = 1; i <= N; i++) {
+    for (int i = 1; i <= lp; i++) {
         s += (*f)(c_od + i * dx);
     }
 
@@ -30,11 +30,11 @@ double prostokaty(double( *f)(double)) {
 }
 
 double trapezy(double (*f)(double)) {
-    const int N = 1000;
+//    const int N = 1000;
     double s = 0;
-    double dx = (c_do - c_od) / N;
+    double dx = (c_do - c_od) / lp;
 
-    for (int i = 1; i < N; i++){
+    for (int i = 1; i < lp; i++){
         s += f(c_od + i * dx);
     }
 
@@ -44,15 +44,15 @@ double trapezy(double (*f)(double)) {
 }
 
 double mc(double(*f)(double)) {
-    const int N = 1000;
+//    const int N = 1000;
     double s = 0;
     double dx = c_do - c_od;
 
-    for (int i = 1; i <= N; i++) {
+    for (int i = 1; i <= lp; i++) {
         s += (*f)(c_od + ((double)rand()/(double)(RAND_MAX + 1)*dx));
     }
 
-    s = dx * s / N;
+    s = dx * s / lp;
 
     return s;
 }
