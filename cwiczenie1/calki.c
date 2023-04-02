@@ -7,11 +7,11 @@
 double c_od, c_do;
 
 double f3(double x) {
-    return pow((x-2),3);
+    return pow((x - 2), 3);
 }
 
 double f4(double x) {
-    return pow((x-M_PI),3);
+    return pow((x - M_PI), 3);
 }
 
 
@@ -32,7 +32,7 @@ double trapezy(double (*f)(double)) {
     double s = 0;
     double dx = (c_do - c_od) / lp;
 
-    for (int i = 1; i < lp; i++){
+    for (int i = 1; i < lp; i++) {
         s += f(c_od + i * dx);
     }
 
@@ -41,16 +41,32 @@ double trapezy(double (*f)(double)) {
     return s;
 }
 
-double mc(double(*f)(double)) {
-    double s = 0;
-    double dx = c_do - c_od;
+double mc(double (*f)(double)) {
+    double krok, min = 0, max = 0, x, y, pole, randX, randY;
+    int n = 0;
 
-    for (int i = 1; i <= lp; i++) {
-        s += (*f)(c_od + ((double)rand()/(double)(RAND_MAX + 1)*dx));
+    krok = (c_do - c_od) / lp;
+
+    for (double i = c_od; i <= c_do; i += krok) {
+        if ((*f)(i) > max)
+            max = (*f)(i);
+        else if ((*f)(i) < min)
+            min = (*f)(i);
     }
 
-    s = dx * s / lp;
+    x = c_do - c_od;
+    y = max - min;
+    pole = x * y;
 
-    return s;
+    for (int i = 1; i <= lp; i++) {
+        randX = c_od + (double) rand() / RAND_MAX * x;
+        randY = min + (double) rand() / RAND_MAX * y;
+        if (randY > 0 && (*f)(randX) > randY)
+            n++;
+        else if (randY < 0 && (*f)(randX) < randY)
+            n--;
+    }
+
+    return n * pole / lp;
 }
 
